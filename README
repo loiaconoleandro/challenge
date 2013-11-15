@@ -1,1 +1,9 @@
 OFS CHALLENGE - Leandro Loiacono
+
+This project uses Django 1.6 and Python 2.7.4 or 2.7.5
+# pip install Django==1.6
+
+To check the app very quickly move to challenge folder and run:
+python manage.py runserver 
+
+Take a look at the /admin site as well 
