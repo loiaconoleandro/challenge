@@ -1,4 +1,0 @@
-ofschallenge
-============
-
-ofschallenge Leandro Loiacono
