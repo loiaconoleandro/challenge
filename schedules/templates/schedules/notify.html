@@ -1,0 +1,102 @@
+{% extends "schedules/main.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{% if booking_list %}
+	<form name="notify_form" id="notify_form" action="{% url 'schedules:add_notification' %}" method="post" class="check-update-form">
+		{% csrf_token %}
+		<input type="text" name="booking" value="" id="booking_ac" placeholder="Search you Booking" autocomplete="off" />
+		<input type="button" id="addbooking" value="" class="button silver small"/>
+		<input type="text" name="email" value="" id="email" placeholder="Email" autocomplete="off"/>
+		<input type="button" id="addemail" value="" class="button silver small"/>
+		<br/>
+		<input type="submit" value="Done" class="button small"/>
+		
+		<input type="hidden" value="" name="emails" id="emails-hidden" autocomplete="off"/>
+		<input type="hidden" value="" name="bookings" id="booking-hidden" autocomplete="off"/>
+	</form>
+{% else %}
+	<p>No flight information available</p>
+{% endif %}
+
+<div id="notify-list">
+	<ul id="booking-list">
+		<p>Booking</p>
+		<li class="booking-to-notify"></li>
+	</ul>
+	<ul id="email-list">
+		<p>Emails</p>
+	</ul>
+</div>
+
+{% if booking_list %}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript">
+$('#booking_ac').autocomplete({
+	source: [
+		{% for booking in booking_list %}
+    		"{{ booking.booking_ref }} - {{ booking.location }} - {{ booking.date_from|date:"d/m/Y H:i" }}" ,
+		{% endfor %} 
+	] 
+});
+
+$(document).ready(function (){
+	$('#notify_form').submit(function (event){
+		if($('#emails-hidden').val() != '' && $('#booking-hidden').val() != '') {
+			return;
+		}
+
+		event.preventDefault();
+	});
+
+	//Add email to notify list
+	$('#addemail').click(function(){
+		if(IsValidEmail($('#email').val())) {
+			$("#email-list").append(
+				'<li>'+ $('#email').val() +'</li>'
+			);
+			
+			$('#emails-hidden').val(
+				$('#emails-hidden').val() + ',' + $('#email').val()
+			);
+			
+			if($('#emails-hidden').val()[0] == ',') {
+				$('#emails-hidden').val($('#emails-hidden').val().substr(1));
+			}
+		} else {
+			$('#email').prop("placeholder", "Input a valid Email");
+			$('#email').val("");
+		}
+		
+		$('#email').val("");
+	});
+	
+	//Add booking to notification list
+	$('#addbooking').click(function(){
+		if(IsValidBoooking($('#booking_ac').val())) {
+			$(".booking-to-notify").text($('#booking_ac').val());
+			
+			//set the booking to be notified
+			$('#booking-hidden').val($('#booking_ac').val());
+		} else {
+			$('#booking_ac').val("");
+		}
+		
+		$('#booking_ac').val("");
+	});
+})
+
+function IsValidBoooking(booking) {
+	//Ajax validation would be nicer!
+	return (booking != '');
+}
+
+function IsValidEmail(email) {
+	var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	return regex.test(email);
+}
+</script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "schedules/main.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+{% if booking_list %}
+	<form name="check-update" action="{% url 'schedules:check_flight' %}" method="post" class="check-update-form">
+		{% csrf_token %}
+		<select name="actions" id="actions" class="select2-input">
+			<option value="check" selected="selected">Check Flight</option>
+			<option value="update">Update Flight</option>
+		</select>
+		
+		<select name="bookings-select" id="flight-info" class="select2-input">
+			{% for booking in booking_list %}
+				{% if booking.date_updated %}
+					<option value="{{ booking.id }}" itemprop="{{ booking.date_updated|date:"d/m/Y H:i" }}" class="booking-updated">
+		        		(UPDATED) {{ booking.location }} - {{ booking.booking_ref }} - {{ booking.date_updated|date:"d/m/Y H:i" }}
+	        		</option>
+				{% else %}
+		        	<option value="{{ booking.id }}" itemprop="{{ booking.date_from|date:"d/m/Y H:i" }}" >
+		        		{{ booking.location }} - {{ booking.booking_ref }} - {{ booking.date_from|date:"d/m/Y H:i" }}
+	        		</option>
+        		{% endif %}
+		    {% endfor %}
+		</select>
+		
+		<input type="text" name="update-flight" value="" id="update-flight" class="datepicker" />
+		<input type="submit" value="Go!" class="button small"/>
+		<p class="text">* dd/mm/yyyy hh:mm 24hs</p>
+	</form>
+{% else %}
+    <p>No flight information available</p>
+{% endif %}
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="{% static 'schedules/js/timepicker.js' %}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	if($('#actions').val() == 'update'){
+		$('#update-flight').css({'visibility' : 'visible'});
+		$('#update-flight').val('');		
+	} else {
+		$('#update-flight').css({'visibility' : 'hidden'});
+		$('#update-flight').val('');		
+	}
+
+	$('#update-flight').click(function (){
+		loadCurrentFlightDate();
+	})
+	
+	$(function() {
+		$('.datepicker').datetimepicker({
+			dateFormat: 'dd/mm/yy',
+			timeFormat: 'HH:mm',
+			stepHour: 1,
+			stepMinute: 5,
+		});
+	});
+	
+	$('#actions').change(function(){
+		if($(this).val() == 'update'){
+			$('#update-flight').css({'visibility' : 'visible'});
+			$('#update-flight').val('');		
+		} else {
+			$('#update-flight').css({'visibility' : 'hidden'});
+			$('#update-flight').val('');		
+		}
+		
+		loadCurrentFlightDate();
+	})
+	
+	$('#flight-info').change(function(){
+		loadCurrentFlightDate();
+	});	
+});
+
+function loadCurrentFlightDate() {
+	var flightDate = $('#flight-info option:selected').attr('itemprop');
+	flightDate = flightDate.split(' ');
+	date = flightDate[0].split('/');
+	time = flightDate[1].split(':');
+	
+	flightDate = new Date(date[2], date[1] - 1, date[0], time[0], time[1], 0);
+	$('.datepicker').datetimepicker('setDate', flightDate);
+}
+</script>
+{% endblock %}

@@ -1,0 +1,281 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+body {
+    color: #222222;
+    background: none repeat scroll 0 0 #FDFDFD;
+    cursor: default;
+    font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+}
+html, body {
+    font-size: 100%;
+}
+
+body #container {
+    background: none repeat scroll 0 0 #FDFDFD;
+    box-shadow: -10px 0 5px -7px rgba(51, 51, 51, 0.5);
+    position: relative;
+}
+
+.header {
+    background-color: #FAFAFA;
+    border-bottom: 1px solid #DDDDDD;
+    position: relative;
+    z-index: 2;
+    height: 50px;
+}
+
+.header .logo img {
+    width: 184px;
+    margin: 10px 0 0 85px;
+}
+
+.text {
+	color: #555555;
+    line-height: 1.4;
+    text-decoration: none;
+    margin: 5px 0 0 0;
+}
+
+.footer {
+    width: 100%;
+    height: 650px;
+    background: url("//ofs-static-production.s3.amazonaws.com/f8024764c13db0b834f87e0ded9d36dfb92bec4a/images/backgrounds/footer_swirl.png?6d514d61f7e3") no-repeat scroll right top #F1F1F1;
+    color: #777777;
+    float: right;
+    margin: 20px 0 0 0;
+    padding: 5px;
+}
+
+.footer a {
+	color: #555555;
+    line-height: 1.4;
+    text-decoration: none;
+    margin: 5px 0 0 15px;
+    font-size: 13px;
+}
+
+.footer a:hover {
+    color: #D80033;
+    text-decoration: underline;
+}
+
+img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+img, object, embed {
+    height: auto;
+    max-width: 100%;
+}
+img {
+    border: 0 none;
+}
+
+.check-update-form {
+    background: none repeat scroll 0 0 rgba(250, 250, 250, 0.98);
+    box-shadow: 0 15px 20px 0 rgba(51, 51, 51, 0.2);
+    height: 290px;
+    margin: 0 0 0 50px;
+    padding: 10px 14px 14px;
+    top: 27px;
+    width: 245px;
+    height: 175px;
+    z-index: 1;
+}
+
+.header .search-form .button {
+    float: right;
+    position: relative;
+    top: -1px;
+}
+.button.small, input.button.small, .button input.small {
+    font-size: 13px;
+    padding: 8px 10px;
+}
+
+.button, input.button, .button input {
+    background-color: #FF4470;
+    background-image: -moz-linear-gradient(center bottom , #DE234F 15%, #FD426E 85%);
+    border: 1px solid #DE234F;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+    outline: 0 none;
+    padding: 10px;
+    position: relative;
+    text-decoration: none;
+    clear: both;
+}
+
+.button.silver, input.button.silver, .button input.silver {
+    background: url("images/button_add.png") no-repeat;
+    background-size: 75%;
+    border: none;
+    color: #131313;
+}
+.button.small, input.button.small, .button input.small {
+    font-size: 13px;
+    padding: 8px 10px;
+}
+
+.select2-input {
+    border: 1px solid #E5E5E5;
+    box-shadow: none;
+    font-family: sans-serif;
+    font-size: 1em;
+    height: auto !important;
+    margin: 5px 0;
+    min-height: 26px;
+    outline: 0 none;
+    padding: 4px 20px 4px 5px;
+    width: 100%;
+}
+
+.select2-container, .select2-drop, .select2-search, .select2-search input {
+    -moz-box-sizing: border-box;
+}
+
+input[type="text"], select {
+    border: 1px solid #AAAAAA;
+    border-radius: 0 0 0 0;
+    color: #555555;
+    display: inline-block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 4px 6px;
+}
+
+.booking-updated {
+	color:#D80033;
+}
+
+div #booking {
+	height: 50%;
+	width: 60%;
+	margin: 10px 0 0 50px;
+    margin: 10px 0 0;
+    position: absolute;
+    top: 45px;
+    left: 400px;
+}
+
+#tag_inject h3 {
+    cursor: pointer;
+}
+
+h3 {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #F3F3F3;
+    border-color: -moz-use-text-color #E5E5E5 #E5E5E5;
+    border-image: none;
+    border-right: 1px solid #E5E5E5;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    font-size: 14px;
+    line-height: 14px;
+    padding: 10px 10px 10px 15px;
+    margin: 20px 0 20px 0;
+    -moz-box-sizing: content-box;
+    width: 180px;
+}
+.color-subtle-fuscia {
+    color: #A5376E;
+}
+.tag-label {
+    color: #555555 !important;
+    display: block;
+    float: none;
+    font-weight: bold;
+    margin-left: 0;
+}
+
+#update-flight {
+	display:block;
+	visibility: hidden;
+	margin: 2px 0;
+}
+
+.logo {
+	width: 270px;
+	float: left;
+}
+
+.notification {
+	float: left;
+    height: 50px;
+    margin: 10px 0 0 0;
+    width: 320px;
+}
+
+#img-email {
+	width: 25px; 
+	height: 25px;
+	margin: 0 0 10px;
+}
+
+.nav-secondary {
+	font-size: 13px;
+	color: #333333;
+    text-decoration: none;
+    margin: 0 0 0 85px;
+}
+
+.nav-secondary:hover {
+	text-decoration: underline;
+}
+
+#notify-list {
+    min-height: 50px;
+    width: 40%;
+    margin: 10px 0 0;
+    position: absolute;
+    top: 45px;
+    left: 400px;
+       
+}
+
+#booking-list, #email-list {
+    min-height: 50px; width: 50%;
+    float: left;
+    list-style: none;
+}
+
+#booking-list li, #email-list li {
+	font-size: 13px;
+	margin: 2px 0;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }

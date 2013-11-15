@@ -1,0 +1,16 @@
+{% load staticfiles %}
+
+<div id="header" class="header">
+	<div itemtype="http://schema.org/Organization" itemscope="" class="logo">
+        <a href="/schedules" itemprop="url">
+            <img itemprop="logo" title="onefinestay - the unhotel" alt="onefinestay" src="//ofs-static-production.s3.amazonaws.com/f8024764c13db0b834f87e0ded9d36dfb92bec4a/images/header/logo-header2x.png">
+        </a>
+    </div>
+    
+    <div class="notification">
+		<a href="{% url 'schedules:notify' %}" class="nav-secondary">
+			<img src="{% static 'schedules/images/mail.png' %}" alt="" id="img-email" />
+			Flight change notification
+		</a>
+	</div>
+</div>

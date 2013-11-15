@@ -1,0 +1,57 @@
+{% extends "schedules/main.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{% if booking %}
+	<form name="notify_form" id="notify_form" action="{% url 'schedules:add_notification' %}" method="post" class="check-update-form">
+		{% csrf_token %}
+		<p>Get an email notification for updates on this flight</p><br/>
+		<input type="text" name="email" value="" id="email" placeholder="Email" autocomplete="off"/>
+		<br/><br/>
+		<input type="submit" value="Done" class="button small"/>
+		<input type="hidden" value="" name="emails" id="emails-hidden" autocomplete="off"/>
+		<input type="hidden" value="{{ booking.booking_ref }}" name="bookings" id="booking-hidden" autocomplete="off"/>
+	</form>
+	
+	<div id="booking">
+		<h3 class="color-subtle-fuscia tag-label">Booking Details</h3>
+		<ul class="booking-details">
+			<li>Flight ref: {{ booking.booking_ref }}</li>
+			<li>Arrival date: {{ booking.date_from }}</li>
+			<li>Location: {{ booking.location }}</li>
+			<li>Flight details: {{ booking.flight_details }}</li>
+			{% if booking.date_updated %}
+				<li>Arrival date (UPDATED): <span class='booking-updated'>{{ booking.date_updated }}<span></li>
+			{% endif %}
+		</ul>
+	</div>
+	
+	
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript">
+$(document).ready(function (){
+	$('#notify_form').submit(function (event){
+		$('#emails-hidden').val($('#email').val());
+		if($('#emails-hidden').val() != '' && $('#booking-hidden').val() != '') {
+			if(IsValidEmail($('#email').val())) {
+				return;
+			} else {
+				$('#email').prop("placeholder", "Input a valid Email");
+				$('#email').val("");
+			}
+		}
+
+		event.preventDefault();
+	});	
+});
+
+function IsValidEmail(email) {
+	var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	return regex.test(email);
+}
+</script>
+{% endif %}
+{% endblock %}

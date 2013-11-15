@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<title>OFS Challenge</title>
+<link rel="stylesheet" type="text/css" href="{% static 'schedules/style.css' %}" />
+<link type="image/x-icon" href="http://www.onefinestay.com/favicon.ico" rel="shortcut icon">
+
+<div id="container" class="container">
+	
+	{% include "schedules/header.html" %}
+	
+	<div id="content" class="content">
+		{% block content %}
+		{% endblock %}
+	</div>
+	
+	{% include "schedules/footer.html" %}
+</div>
